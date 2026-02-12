@@ -1,6 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import type { HelloResponseDto } from './dto/hello.dto';
+import { BadRequestException } from '@nestjs/common';
 
 
 @Controller()
@@ -16,4 +17,13 @@ export class AppController {
   helloName(@Param('name') name: string): HelloResponseDto {
     return this.appService.helloName(name);
   }
+
+  @Get('square/:n')
+square(@Param('n') n: string) {
+  const value = Number(n);
+  if (!Number.isFinite(value)) {
+    throw new BadRequestException('n must be a number');
+  }
+  return { n: value, square: value * value };
+}
 }
