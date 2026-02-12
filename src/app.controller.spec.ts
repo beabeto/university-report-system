@@ -16,7 +16,9 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+      // Call the correct method name in your controller
+      expect(appController.hello()).toBe('Hello World!');
     });
   });
 });
+
