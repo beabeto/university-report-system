@@ -2,6 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import type { HelloResponseDto } from './dto/hello.dto';
 import { BadRequestException } from '@nestjs/common';
+import type { HealthResponseDto } from './dto/health.dto';
 
 
 @Controller()
@@ -25,5 +26,10 @@ square(@Param('n') n: string) {
     throw new BadRequestException('n must be a number');
   }
   return { n: value, square: value * value };
+}
+
+@Get('health')
+health(): HealthResponseDto {
+  return this.appService.health();
 }
 }
